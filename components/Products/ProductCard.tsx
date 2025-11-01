@@ -5,7 +5,7 @@ import {ProductProps} from "@/components/Products/ProductSection";
 
 function ProductCard({label, price, icon}: ProductProps) {
     return (
-        <div className="h-100 w-76 bg-black cursor-pointer">
+        <div className="h-100 w-76 bg-black cursor-pointer border border-destructive">
             <div className="relative w-full h-full">
 
                 <div

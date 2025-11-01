@@ -2,14 +2,14 @@ import React from 'react';
 
 function CommonTitleHeader({title , description}: {title: string, description?: string} ) {
     return (
-        <>
-            <div className="text-secondary text-[55px] tracking-widest font-sans font-light uppercase">
+        <div>
+            <div className="text-secondary text-[55px] tracking-widest font-sans font-light uppercase text-center">
                 {title}
             </div>
-            <span className="text-muted-foreground text-[20px] font-light font-sans">
+            <div className="text-muted-foreground text-[20px] font-light font-sans text-center">
                 {description}
-            </span>
-        </>
+            </div>
+        </div>
     );
 }
 

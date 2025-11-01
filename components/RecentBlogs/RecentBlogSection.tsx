@@ -44,25 +44,24 @@ const process = [
 
 function RecentBlogSection() {
     return (
-        <div className="flex flex-col items-center justify-center w-full">
+        <div className="w-full flex flex-col items-center">
             <CommonTitleHeader title="recent blogs" description=""/>
 
-            <div className="flex items-center justify-center w-full gap-10 mt-4">
-                {
-                    blogs.map((blog, index) => (
-                        <RecentBlogCard key={index} {...blog} />
-                    ))
-                }
+            {/* Blog Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-row gap-6 mt-4 w-full justify-center">
+                {blogs.map((blog) => (
+                    <RecentBlogCard key={blog.id} {...blog} />
+                ))}
             </div>
 
-            <div className={'mt-24 flex gap-5'}>
-                {
-                    process.map((item, index) => (
-                        <ProcessCard key={index} {...item} />
-                    ))
-                }
+            {/* Process Icons */}
+            <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-6">
+                {process.map((item) => (
+                    <ProcessCard key={item.id} {...item} />
+                ))}
             </div>
         </div>
+
     );
 }
 

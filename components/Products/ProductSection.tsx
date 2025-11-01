@@ -26,7 +26,7 @@ function ProductSection() {
 
     return (
         <div className="flex flex-col items-center justify-center z-50">
-            <div className="flex gap-10">
+            <div className="flex flex-wrap gap-10">
                 {arr.map((item, index) => {
                     const isActive = selected === index;
                     return (
@@ -52,7 +52,7 @@ function ProductSection() {
                 })}
             </div>
 
-            <div className={`grid grid-cols-3 gap-5 m-10`}>
+            <div className={`grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-5 m-10`}>
                 {
                     products?.map((product, index) => (
                         <ProductCard key={index} {...product}/>

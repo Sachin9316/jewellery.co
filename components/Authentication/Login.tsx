@@ -116,7 +116,7 @@ const [showPassword, setShowPassword] = useState(false);
       checked={showPassword}
       onChange={() => setShowPassword(prev => !prev)}
     />
-                                    <span className={'pb-1'}>
+                                    <span className={''}>
                                         Show password
                                     </span>
                                 </label>

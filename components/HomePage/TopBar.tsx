@@ -3,6 +3,7 @@
 import React, {useState, useEffect, useRef} from "react";
 import Link from "next/link";
 import Image from "next/image";
+import {useRouter, useSearchParams} from "next/navigation";
 
 const socialIcons = [
     {id: 1, icon: "/icons/insta-icon.svg", link: "/"},
@@ -22,7 +23,34 @@ function TopBar() {
     const [index, setIndex] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
     const [currencies, setCurrencies] = useState<string[]>([]);
-    const [selectedCurrency, setSelectedCurrency] = useState("INR");
+    const [selectedCurrency, setSelectedCurrency] = useState<string | null>("INR");
+    const searchParams = useSearchParams();
+    const router = useRouter();
+
+    const updateParams = (currency: string) => {
+        const params = new URLSearchParams(searchParams.toString());
+        if (params.get("currency") !== currency) {
+            params.set("currency", currency);
+            router.replace(`?${params.toString()}`, {scroll: false});
+        }
+    };
+
+    useEffect(() => {
+        const urlCurrency = searchParams.get("currency");
+        const savedCurrency = localStorage.getItem("currency");
+
+        if (urlCurrency) {
+            setSelectedCurrency(urlCurrency);
+            localStorage.setItem("currency", urlCurrency);
+        } else if (savedCurrency) {
+            setSelectedCurrency(savedCurrency);
+            updateParams(savedCurrency);
+        } else {
+            setSelectedCurrency("INR");
+            updateParams("INR");
+            localStorage.setItem("currency", "INR");
+        }
+    }, [searchParams]);
 
     const dropdownRef = useRef<HTMLDivElement | null>(null);
 
@@ -70,7 +98,6 @@ function TopBar() {
 
     return (
         <div className="top-bar flex justify-between items-center px-4 py-2 bg-destructive">
-            {/* Social Icons */}
             <div className="flex gap-1.5 items-center justify-center">
                 {socialIcons.map(({id, icon, link}) => (
                     <Link key={id} href={link}>
@@ -81,7 +108,6 @@ function TopBar() {
                 ))}
             </div>
 
-            {/* Offers Slider */}
             <div className="flex items-center justify-between text-white sm:gap-20 gap-3">
                 {index === 0 && (
                     <div className="relative w-[16px] h-[16px] cursor-pointer hidden sm:flex"
@@ -98,7 +124,6 @@ function TopBar() {
                 )}
             </div>
 
-            {/* Currency Dropdown */}
             <div className="relative flex items-center text-white gap-1" ref={dropdownRef}>
                 <div
                     className="flex items-center gap-1 cursor-pointer"
@@ -119,6 +144,7 @@ function TopBar() {
                                     key={currency}
                                     className="px-3 py-2 text-sm hover:bg-gray-100 cursor-pointer"
                                     onClick={() => {
+                                        updateParams(currency)
                                         setSelectedCurrency(currency);
                                         setIsOpen(false);
                                     }}

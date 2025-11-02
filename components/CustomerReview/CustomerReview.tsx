@@ -4,9 +4,9 @@ import Image from "next/image";
 import CommonTitleHeader from "@/components/Common/CommonTitleHeader";
 
 const videos = [
-    "/videos/video-1.mp4",
-    "/videos/video-2.mp4",
-    "/videos/video-3.mp4",
+    "/images/video-1.mp4",
+    "/images/video-2.mp4",
+    "/images/video-3.mp4",
     "/images/video_of_lab.mp4",
 ];
 
@@ -28,7 +28,7 @@ function CustomerReview() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center w-full px-4 mt-5">
+        <div className="flex flex-col items-center justify-center w-full px-4 mt-5 md:mt-2">
             <CommonTitleHeader title="WHAT OUR CUSTOMERS SAY" description=""/>
 
             <div className="relative mt-3 md:mt-5 w-full sm:w-3/4 flex items-center justify-center overflow-hidden">

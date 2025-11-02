@@ -8,6 +8,7 @@ import {useAppDispatch, useAppSelector} from "@/utils/redux/hooks";
 import {RootState} from "@/utils/redux/store";
 import {loggInToggle, logout} from "@/utils/redux/Slices/authSlice";
 import SearchAutocomplete from "@/components/Common/SearchAutocomplete";
+import {useRouter} from "next/navigation";
 
 const nav: string[] = ["NEW ARRIVAL", "CUSTOM JEWELLERY", "TRY AT HOME", "EDUCATION HUB", "ABOUT US"];
 
@@ -22,7 +23,10 @@ function NavBar({invert = false}: { invert?: boolean }) {
     const [menuOpen, setMenuOpen] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
     const {isAuthenticated, showLoggedIn} = useAppSelector((state: RootState) => state.auth);
+    const {products} = useAppSelector((state: RootState) => state.product);
     const dispatch = useAppDispatch();
+    const count: number = products?.length;
+    const router = useRouter();
 
     const handleLogout = () => {
         dispatch(logout());
@@ -43,6 +47,21 @@ function NavBar({invert = false}: { invert?: boolean }) {
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
         setShowSearch(false);
+    }
+
+    const handleWishlistClick = () => {
+        console.log('hello')
+        router.push('/wishlist');
+    }
+
+    const handleClick = (index: number) => {
+        if (index === 0) {
+            setShowSearch(!showSearch)
+        } else if (index === 1) {
+            handleWishlistClick()
+        } else if (index === 2) {
+            handleLogout()
+        }
     }
 
     return (
@@ -77,17 +96,32 @@ function NavBar({invert = false}: { invert?: boolean }) {
                             return (
                                 <div
                                     key={id}
-                                    onClick={() => index === 0 && setShowSearch(!showSearch)}
+                                    onClick={() => handleClick(index)}
                                     className={`relative w-[22px] h-[22px] md:w-[24px] md:h-[24px] cursor-pointer ${
                                         index === 0 ? "hidden md:block" : ""
                                     }`}
                                 >
                                     <Image src={icon} alt={`icon-${id}`} fill className="object-contain"/>
+
+                                    {id === 2 && products.length > 0 && (
+                                        <span
+                                            className="
+                                            absolute -top-1 -right-1
+                                            w-4 h-4
+                                            bg-red-600 text-white
+                                            text-[10px]
+                                            flex items-center justify-center
+                                            rounded-full
+                                        "
+                                        >
+                                        {count}
+                                    </span>
+                                    )}
                                 </div>
                             );
                         }
 
-                        if (isAuthenticated) {
+                        if (id === 3 && isAuthenticated) {
                             return (
                                 <DropdownMenu key={id}>
                                     <DropdownMenuTrigger

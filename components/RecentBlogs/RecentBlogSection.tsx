@@ -55,7 +55,7 @@ function RecentBlogSection() {
             </div>
 
             {/* Process Icons */}
-            <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-6">
+            <div className="my-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
                 {process.map((item) => (
                     <ProcessCard key={item.id} {...item} />
                 ))}

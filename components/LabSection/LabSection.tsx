@@ -13,7 +13,7 @@ function LabSection() {
     };
 
     return (
-        <div className="flex flex-col lg:flex-row items-center justify-center w-full p-6 sm:p-10 lg:p-14 gap-8 lg:gap-0">
+        <div className="flex flex-col lg:flex-row items-center justify-center w-full p-6 sm:p-10 lg:p-14 gap-6 lg:gap-0 mt-7 sm:mt-0">
 
             {/* Left Video Section */}
             <div
@@ -30,7 +30,7 @@ function LabSection() {
             </div>
 
             {/* Right Content Section */}
-            <div className="right-card w-full lg:w-1/2 flex flex-col justify-center items-center p-6 sm:p-10 gap-6 lg:gap-10">
+            <div className="right-card w-full lg:w-1/2 flex flex-col justify-center items-center px-6 sm:p-10 gap-6 lg:gap-10">
                 <div className="text-2xl sm:text-3xl lg:text-[40px] uppercase tracking-wider font-light text-center">
                     brilliance of lab grown diamonds
                 </div>
@@ -50,4 +50,4 @@ function LabSection() {
     );
 }
 
-export default LabSection;
+export default React.memo(LabSection);

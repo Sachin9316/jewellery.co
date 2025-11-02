@@ -15,18 +15,18 @@ import FooterSection from "@/components/Footer/FooterSection";
 import AuthComponent from "@/components/Authentication/AuthComponent";
 
 export default function Home() {
-    const {isAuthenticated} = useAppSelector((state: RootState) => state.auth);
+    const {isAuthenticated, showLoggedIn} = useAppSelector((state: RootState) => state.auth);
 
     return (
-        <div className={`flex flex-col ${isAuthenticated ? 'gap-10' : 'gap-5'}`}>
+        <div className={`flex flex-col ${isAuthenticated ? 'gap-10' : 'gap-1'}`}>
             <div className="flex flex-col min-h-screen">
                 <TopBar/>
-                {isAuthenticated ? <HeroSection/> : <AuthComponent/>}
+                {showLoggedIn ? <HeroSection/> : <AuthComponent/>}
             </div>
 
             <div>
                 {
-                    isAuthenticated && (
+                    showLoggedIn && (
                         <>
                             <ShopByCategory/>
 

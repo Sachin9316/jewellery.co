@@ -64,7 +64,7 @@ function ShopByShape() {
                 description={"Every Diamond Tells a Story So Find Yours"}
             />
 
-            <div className="relative w-full mt-4 flex items-center gap-4 px-10">
+            <div className="relative w-full mt-2 flex items-center gap-4 px-10">
                 <div className={'relative w-[16px] h-[16px] cursor-pointer'} onClick={scrollLeft}>
                     <Image
                         src={'/icons/left-arrow-gray.svg'}

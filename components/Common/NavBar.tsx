@@ -2,6 +2,12 @@ import React, {useState} from 'react';
 import {Menu, X} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import {DropdownMenu, DropdownMenuTrigger} from '@radix-ui/react-dropdown-menu';
+import {DropdownMenuContent, DropdownMenuItem} from "@/components/ui/dropdown-menu";
+import {useAppDispatch, useAppSelector} from "@/utils/redux/hooks";
+import {RootState} from "@/utils/redux/store";
+import {loggInToggle, logout} from "@/utils/redux/Slices/authSlice";
+import SearchAutocomplete from "@/components/Common/SearchAutocomplete";
 
 const nav: string[] = ["NEW ARRIVAL", "CUSTOM JEWELLERY", "TRY AT HOME", "EDUCATION HUB", "ABOUT US"];
 
@@ -12,9 +18,22 @@ const icons = [
     {id: 4, icon: "/icons/bag-icon.svg"},
 ];
 
-function NavBar({invert=false}: {invert?: boolean}) {
+function NavBar({invert = false}: { invert?: boolean }) {
     const [menuOpen, setMenuOpen] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
+    const {isAuthenticated, showLoggedIn} = useAppSelector((state: RootState) => state.auth);
+    const dispatch = useAppDispatch();
+
+    const handleLogout = () => {
+        dispatch(logout());
+    };
+
+    const handleUserClick = () => {
+        if (!isAuthenticated) {
+            dispatch(loggInToggle(!showLoggedIn));
+        }
+    };
+
 
     const toggleSearch = () => {
         setShowSearch(!showSearch);
@@ -48,21 +67,52 @@ function NavBar({invert=false}: {invert?: boolean}) {
                 </div>
 
                 <div className="relative w-24 h-10 md:w-32 md:h-12">
-                    <Image src="/icons/logo.svg" alt="logo" fill priority className="object-contain" fetchPriority={'high'}/>
+                    <Image src="/icons/logo.svg" alt="logo" fill priority className="object-contain"
+                           fetchPriority={'high'}/>
                 </div>
 
                 <div className="flex gap-3">
-                    {icons.map(({id, icon}, index) => (
-                        <div
-                            key={id}
-                            className={`relative w-[22px] h-[22px] md:w-[24px] md:h-[24px] cursor-pointer ${
-                                index === 0 ? "hidden md:block" : ""
-                            }`}
-                            onClick={() => index === 0 && toggleSearch()}
-                        >
-                            <Image src={icon} alt={`icon-${id}`} fill priority fetchPriority={'high'} className="object-contain"/>
-                        </div>
-                    ))}
+                    {icons.map(({id, icon}, index) => {
+                        if (id !== 3) {
+                            return (
+                                <div
+                                    key={id}
+                                    onClick={() => index === 0 && setShowSearch(!showSearch)}
+                                    className={`relative w-[22px] h-[22px] md:w-[24px] md:h-[24px] cursor-pointer ${
+                                        index === 0 ? "hidden md:block" : ""
+                                    }`}
+                                >
+                                    <Image src={icon} alt={`icon-${id}`} fill className="object-contain"/>
+                                </div>
+                            );
+                        }
+
+                        if (isAuthenticated) {
+                            return (
+                                <DropdownMenu key={id}>
+                                    <DropdownMenuTrigger
+                                        className="relative w-[22px] h-[22px] md:w-[24px] md:h-[24px] cursor-pointer">
+                                        <Image src={icon} alt="user-icon" fill className="object-contain"/>
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent className="bg-white text-black mt-2">
+                                        <DropdownMenuItem onClick={handleLogout} className="text-destructive">
+                                            Sign Out
+                                        </DropdownMenuItem>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+                            );
+                        }
+
+                        return (
+                            <div
+                                key={id}
+                                onClick={handleUserClick}
+                                className="relative w-[22px] h-[22px] md:w-[24px] md:h-[24px] cursor-pointer"
+                            >
+                                <Image src={icon} alt="user-login" fill className="object-contain"/>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
 
@@ -79,11 +129,7 @@ function NavBar({invert=false}: {invert?: boolean}) {
                         border-black
                     "
                 >
-                    <input
-                        type="text"
-                        placeholder="Search..."
-                        className="w-full px-4 py-2 focus:outline-none"
-                    />
+                    <SearchAutocomplete/>
                 </div>
             )}
 

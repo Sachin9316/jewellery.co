@@ -9,7 +9,6 @@ const FooterColumn = ({title, links}: { title: string; links: string[] }) => {
 
     return (
         <div>
-            {/* Header with accordion behavior only on mobile */}
             <div
                 className="flex justify-between items-center md:cursor-default cursor-pointer"
                 onClick={() => setIsOpen(!isOpen)}
@@ -17,7 +16,10 @@ const FooterColumn = ({title, links}: { title: string; links: string[] }) => {
                 <h3 className={`${isAuthenticated ? 'text-destructive' : 'text-primary'} font-normal tracking-widest mb-3`}>{title}
                 </h3>
                 <span className="md:hidden">
-                  {isOpen ? <ChevronUp size={18}/> : <ChevronDown size={18}/>}
+                  {isOpen ?
+                      <ChevronUp size={18} className={`${isAuthenticated ? 'text-destructive' : 'text-primary'}`}/> :
+                      <ChevronDown size={18} className={`${isAuthenticated ? 'text-destructive' : 'text-primary'}`}/>
+                  }
                 </span>
             </div>
 

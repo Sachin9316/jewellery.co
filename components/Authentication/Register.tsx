@@ -24,7 +24,7 @@ export default function Register({setShowLogin}: {setShowLogin: any}) {
     const dispatch = useDispatch();
 
     return (
-        <div className="flex flex-col sm:flex-row w-full justify-center items-center px-4 md:px-16 pt-10">
+        <div className="flex flex-col sm:flex-row w-full justify-center items-center px-4 md:px-16 py-6">
             {/* Image Section */}
             <div className="w-full sm:w-[450px] h-[280px] sm:h-[580px] relative">
                 <Image
@@ -169,7 +169,7 @@ export default function Register({setShowLogin}: {setShowLogin: any}) {
                             </div>
 
                             {/* Already Account */}
-                            <p className="text-sm mt-3 text-center w-full text-muted-foreground">
+                            <p className="text-sm mt-4 text-center w-full text-muted-foreground">
                                 Already have an account?{" "}
                                 <Link href="#" className="text-muted-foreground underline"
                                       onClick={() => setShowLogin(true)}>

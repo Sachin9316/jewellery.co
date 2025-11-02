@@ -4,7 +4,7 @@ import CommonTitleHeader from "@/components/Common/CommonTitleHeader";
 
 function ShopByCategory() {
     return (
-        <div className="flex flex-col items-center justify-center ">
+        <div className="flex flex-col items-center justify-center mt-5">
             <CommonTitleHeader title={'shop by category'} description={'Discover Jewelry Designed for Every Mood and Moment'}/>
 
             <div className="w-full mt-4 flex justify-center gap-1">

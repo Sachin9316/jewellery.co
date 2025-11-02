@@ -9,18 +9,19 @@ import {useDispatch} from "react-redux";
 
 export default function Register({setShowLogin}: {setShowLogin: any}) {
     const validationSchema = Yup.object({
-        firstName: Yup.string().required("First name is required"),
-        lastName: Yup.string().required("Last name is required"),
-        email: Yup.string().email("Invalid email").required("Email is required"),
-        phone: Yup.string().required("Phone number is required"),
-        password: Yup.string()
-            .min(6, "Password must be at least 6 characters")
-            .required("Password is required"),
-        confirmPassword: Yup.string()
-            .oneOf([Yup.ref("password")], "Passwords must match")
-            .required("Confirm password is required"),
-    });
-
+  firstName: Yup.string().required("First name is required"),
+  lastName: Yup.string().required("Last name is required"),
+  email: Yup.string().email("Invalid email").required("Email is required"),
+  phone: Yup.string()
+    .matches(/^[6-9]\d{9}$/, "Enter a valid 10-digit phone number")
+    .required("Phone number is required"),
+  password: Yup.string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is required"),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("password")], "Passwords must match")
+    .required("Confirm password is required"),
+});
     const dispatch = useDispatch();
 
     return (

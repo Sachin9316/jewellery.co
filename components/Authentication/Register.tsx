@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, {useState} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {Formik, Form, Field, ErrorMessage} from "formik";
@@ -23,6 +23,7 @@ export default function Register({setShowLogin}: {setShowLogin: any}) {
     .required("Confirm password is required"),
 });
     const dispatch = useDispatch();
+const [showPassword, setShowPassword] = useState(false);
 
     return (
         <div className="flex flex-col sm:flex-row w-full justify-center items-center px-4 md:px-16 py-6">
@@ -123,41 +124,40 @@ export default function Register({setShowLogin}: {setShowLogin: any}) {
                             </div>
 
                             {/* Password */}
-                            <div>
-                                <label className="block text-sm mb-1">Create Password</label>
-                                <Field
-                                    type="password"
-                                    name="password"
-                                    placeholder="Enter Password"
-                                    className="w-full border rounded p-2 text-sm"
-                                />
-                                <ErrorMessage name="password" component="p" className="text-red-500 text-xs"/>
-                            </div>
+<div>
+  <label className="block text-sm mb-1">Create Password</label>
+  <Field
+    type={showPassword ? "text" : "password"}
+    name="password"
+    placeholder="Enter Password"
+    className="w-full border rounded p-2 text-sm"
+  />
+  <ErrorMessage name="password" component="p" className="text-red-500 text-xs" />
+</div>
 
-                            {/* Confirm Password */}
-                            <div>
-                                <label className="block text-sm mb-1">Confirm Password</label>
-                                <Field
-                                    type="password"
-                                    name="confirmPassword"
-                                    placeholder="Re-Enter Password"
-                                    className="w-full border rounded p-2 text-sm"
-                                />
-                                <ErrorMessage
-                                    name="confirmPassword"
-                                    component="p"
-                                    className="text-red-500 text-xs"
-                                />
-                            </div>
+{/* Confirm Password */}
+<div>
+  <label className="block text-sm mb-1">Confirm Password</label>
+  <Field
+    type={showPassword ? "text" : "password"}
+    name="confirmPassword"
+    placeholder="Re-Enter Password"
+    className="w-full border rounded p-2 text-sm"
+  />
+  <ErrorMessage name="confirmPassword" component="p" className="text-red-500 text-xs" />
+</div>
 
                             <div className="flex items-center justify-between mt-2 text-sm text-gray-600">
-                                <label className="flex items-center">
-                                    <input type="checkbox" className="mr-2"/>
-                                    <span className={'pb-1'}>
-                                        Show password
-                                    </span>
-                                </label>
-                            </div>
+  <label className="flex items-center cursor-pointer">
+    <input
+      type="checkbox"
+      className="mr-2"
+      checked={showPassword}
+      onChange={() => setShowPassword(prev => !prev)}
+    />
+    <span className="pb-1">Show password</span>
+  </label>
+</div>
 
                             {/* Submit Button */}
                             <div className="flex justify-center">

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, {useState} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {Formik, Form, Field, ErrorMessage} from "formik";
@@ -18,6 +18,7 @@ export default function Login({setShowLogin}: { setShowLogin: any }) {
             .required("Password is required"),
     });
     const dispatch = useDispatch();
+const [showPassword, setShowPassword] = useState(false);
 
     return (
         <div className="flex flex-col sm:flex-row w-full justify-center items-center pt-1 md:pt-16">
@@ -95,7 +96,7 @@ export default function Login({setShowLogin}: { setShowLogin: any }) {
                                 Password
                             </label>
                             <Field
-                                type="password"
+                                type={showPassword ? "text" : "password"}
                                 id="password"
                                 name="password"
                                 placeholder="Enter Password"
@@ -109,7 +110,12 @@ export default function Login({setShowLogin}: { setShowLogin: any }) {
 
                             <div className="flex items-center justify-between mt-2 text-sm text-gray-600">
                                 <label className="flex items-center">
-                                    <input type="checkbox" className="mr-2"/>
+                                   <input
+      type="checkbox"
+      className="mr-2"
+      checked={showPassword}
+      onChange={() => setShowPassword(prev => !prev)}
+    />
                                     <span className={'pb-1'}>
                                         Show password
                                     </span>

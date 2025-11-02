@@ -3,6 +3,8 @@
 import React, {useState} from "react";
 import Image from "next/image";
 import {ChevronDown, ChevronUp} from "lucide-react";
+import {useSelector} from "react-redux";
+import {RootState} from "@/utils/redux/store";
 
 const companyLinks = ["About us", "Why we are different", "Lab grown diamonds", "Why us", "Our purpose", "Story Glimpse"];
 const supportLinks = ["Chat Now", "Free Resizing", "Track your Order", "Education", "Review", "FAQ"];
@@ -35,19 +37,24 @@ const informationLinks = [
 ];
 
 function FooterSection() {
+    const {isAuthenticated} = useSelector((state: RootState) => state.auth);
+
     return (
-        <footer className="bg-white border-t border-red-200 py-10 px-6 md:px-16 lg:px-20 mt-14">
+        <footer className="bg-white py-10 px-6 md:px-16 lg:px-12">
             {/* Logo and Social Icons */}
             <div className="flex flex-col md:flex-row md:justify-between gap-10">
-                <div className="flex flex-col gap-4">
-                    <div className="relative w-28 h-10">
-                        <Image src={'/icons/logo-2.svg'} alt="logo" fill className="absolute object-contain"/>
+                <div className="flex flex-col gap-2 sm:items-start items-center">
+                    <div className="flex flex-col justify-center items-center pb-2">
+                        <div className="relative w-28 h-8">
+                            <Image src={'/icons/logo-2.svg'} alt="logo" fill className="absolute object-contain"/>
+                        </div>
+
+                        <p className="text-[10px] text-muted-foreground ">Grown with love, worn with pride</p>
                     </div>
-                    <p className="text-[10px] text-muted-foreground">Grown with love, worn with pride</p>
 
                     <div className="flex gap-4">
                         {socialIcons.map((icon, index) => (
-                            <img key={index} src={icon.src} alt={icon.alt} className="w-5 cursor-pointer"/>
+                            <img key={index} src={icon.src} alt={icon.alt} className={`w-5 cursor-pointer ${isAuthenticated ? '' : 'grayscale-100'}`}/>
                         ))}
                     </div>
                 </div>
@@ -63,7 +70,7 @@ function FooterSection() {
             </div>
 
             {/* Divider */}
-            <div className="border-t border-destructive my-6"></div>
+            <div className={`${!isAuthenticated ? 'border-destructive' : 'border-primary'} border-t my-6`}></div>
 
             {/* Bottom Section */}
             <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
@@ -83,6 +90,7 @@ function FooterSection() {
 
 const FooterColumn = ({title, links}: { title: string; links: string[] }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const {isAuthenticated} = useSelector((state: RootState) => state.auth);
 
     return (
         <div>
@@ -91,13 +99,13 @@ const FooterColumn = ({title, links}: { title: string; links: string[] }) => {
                 className="flex justify-between items-center md:cursor-default cursor-pointer"
                 onClick={() => setIsOpen(!isOpen)}
             >
-                <h3 className="text-red-500 font-normal tracking-widest mb-3">{title}</h3>
+                <h3 className={`${isAuthenticated ? 'text-destructive' : 'text-primary'} font-normal tracking-widest mb-3`}>{title}
+                </h3>
                 <span className="md:hidden">
-          {isOpen ? <ChevronUp size={18}/> : <ChevronDown size={18}/>}
-        </span>
+                  {isOpen ? <ChevronUp size={18}/> : <ChevronDown size={18}/>}
+                </span>
             </div>
 
-            {/* Accordion Content */}
             <ul
                 className={`overflow-hidden transition-all duration-300 ${
                     isOpen ? "max-h-40" : "max-h-0 md:max-h-full"
@@ -110,7 +118,8 @@ const FooterColumn = ({title, links}: { title: string; links: string[] }) => {
                 ))}
             </ul>
         </div>
-    );
+    )
+        ;
 };
 
 export default FooterSection;

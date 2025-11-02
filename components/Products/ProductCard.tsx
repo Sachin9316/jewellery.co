@@ -5,7 +5,7 @@ import {ProductProps} from "@/components/Products/ProductSection";
 
 function ProductCard({label, price, icon}: ProductProps) {
     return (
-        <div className="h-100 w-76 bg-black cursor-pointer border border-destructive">
+        <div className="h-100 w-76 cursor-pointer">
             <div className="relative w-full h-full">
 
                 <div
@@ -20,7 +20,6 @@ function ProductCard({label, price, icon}: ProductProps) {
                 </div>
 
 
-                {/* 🖼️ Product Image */}
                 <Image
                     src={icon}
                     alt={label}
@@ -29,7 +28,6 @@ function ProductCard({label, price, icon}: ProductProps) {
                     className="object-cover"
                 />
 
-                {/* 💬 Price & Label - bottom left */}
                 <div className="absolute bottom-5 left-5 text-white font-sans">
                     <div className="text-lg tracking-widest text-destructive">$ {price}</div>
                     <div className="text-xl font-light tracking-widest text-muted-foreground">{label}</div>

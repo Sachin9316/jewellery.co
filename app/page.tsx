@@ -14,6 +14,7 @@ import CustomerReview from "@/components/CustomerReview/CustomerReview";
 import RecentBlogSection from "@/components/RecentBlogs/RecentBlogSection";
 import SubscribeSection from "@/components/Subscribe/SubscribeSection";
 import FooterSection from "@/components/Footer/FooterSection";
+import AuthCommponent from "@/components/Authentication/AuthCommponent";
 
 export default function Home() {
     const router = useRouter();
@@ -46,22 +47,23 @@ export default function Home() {
 
     return (
         <div className={'flex flex-col gap-10'}>
-            <div className="flex flex-col h-screen">
+            <div className="flex flex-col">
                 <TopBar/>
-                <HeroSection/>
+                <AuthCommponent/>
+                {/*<HeroSection/>*/}
             </div>
 
-            <ShopByCategory/>
+            {/*<ShopByCategory/>*/}
 
-            <ShopByShape/>
+            {/*<ShopByShape/>*/}
 
-            <ProductSection/>
+            {/*<ProductSection/>*/}
 
-            <LabSection/>
+            {/*<LabSection/>*/}
 
-            <CustomerReview/>
+            {/*<CustomerReview/>*/}
 
-            <RecentBlogSection/>
+            {/*<RecentBlogSection/>*/}
 
             <SubscribeSection/>
 

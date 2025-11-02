@@ -4,8 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import {Formik, Form, Field, ErrorMessage} from "formik";
 import * as Yup from "yup";
+import {loginSuccess} from "@/utils/redux/Slices/authSlice";
+import {useDispatch} from "react-redux";
 
-export default function Register({setShowLogin}) {
+export default function Register({setShowLogin}: {setShowLogin: any}) {
     const validationSchema = Yup.object({
         firstName: Yup.string().required("First name is required"),
         lastName: Yup.string().required("Last name is required"),
@@ -18,6 +20,8 @@ export default function Register({setShowLogin}) {
             .oneOf([Yup.ref("password")], "Passwords must match")
             .required("Confirm password is required"),
     });
+
+    const dispatch = useDispatch();
 
     return (
         <div className="flex flex-col sm:flex-row w-full justify-center items-center px-4 md:px-16 pt-10">
@@ -49,7 +53,16 @@ export default function Register({setShowLogin}) {
                     }}
                     validationSchema={validationSchema}
                     onSubmit={(values) => {
-                        console.log("Form submitted ✅", values);
+                        const user = {
+                            id: Date.now().toString(),
+                            name: `${values.firstName} ${values.lastName}`,
+                            email: values.email,
+                            password: values.password,
+                        };
+
+                        const token = "dummy-registration-token";
+                        dispatch(loginSuccess({user, checked: false, token}));
+                        setShowLogin(true);
                     }}
                 >
                     {() => (

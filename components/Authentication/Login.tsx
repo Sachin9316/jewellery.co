@@ -2,10 +2,13 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import {Formik, Form, Field, ErrorMessage} from "formik";
 import * as Yup from "yup";
+import {useDispatch} from "react-redux";
+import {loginSuccess} from "@/utils/redux/Slices/authSlice";
+import {toast} from "sonner";
 
-export default function Login({setShowLogin}: {setShowLogin: any}) {
+export default function Login({setShowLogin}: { setShowLogin: any }) {
     const validationSchema = Yup.object({
         email: Yup.string()
             .email("Invalid email format")
@@ -14,6 +17,7 @@ export default function Login({setShowLogin}: {setShowLogin: any}) {
             .min(6, "Password must be at least 6 characters")
             .required("Password is required"),
     });
+    const dispatch = useDispatch();
 
     return (
         <div className="flex flex-col sm:flex-row w-full justify-center items-center pt-1 md:pt-16">
@@ -35,10 +39,34 @@ export default function Login({setShowLogin}: {setShowLogin: any}) {
                 </h1>
 
                 <Formik
-                    initialValues={{ email: "", password: "" }}
+                    initialValues={{email: "", password: ""}}
                     validationSchema={validationSchema}
                     onSubmit={(values) => {
-                        console.log("Form submitted ✅", values);
+                        const storedUser = localStorage.getItem("user");
+                        const storedToken = localStorage.getItem("token");
+
+                        if (!storedUser || !storedToken) {
+                            alert("No user found. Please register first.");
+                            return;
+                        }
+
+                        const user = JSON.parse(storedUser);
+
+                        console.log({
+                            user
+                        })
+
+                        if (values.email === user.email && values.password === user.password) {
+                            dispatch(loginSuccess({user, checked: true, token: storedToken}));
+                            localStorage.setItem("isLoggedIn", JSON.stringify(true));
+                            toast.success("Logged in successfully.", {
+                                position: "top-right",
+                            });
+                        } else {
+                            toast.error("Invalid email or password", {
+                                position: "top-right",
+                            });
+                        }
                     }}
                 >
                     <Form className="w-full max-w-md space-y-5">
@@ -81,7 +109,7 @@ export default function Login({setShowLogin}: {setShowLogin: any}) {
 
                             <div className="flex items-center justify-between mt-2 text-sm text-gray-600">
                                 <label className="flex items-center">
-                                    <input type="checkbox" className="mr-2" />
+                                    <input type="checkbox" className="mr-2"/>
                                     <span className={'pb-1'}>
                                         Show password
                                     </span>
@@ -107,7 +135,8 @@ export default function Login({setShowLogin}: {setShowLogin: any}) {
                 {/* Register Link */}
                 <p className="text-sm mt-6 text-gray-600">
                     Don’t have an account?{" "}
-                    <Link href="#" className="text-black font-medium hover:underline" onClick={() => setShowLogin(false)}>
+                    <Link href="#" className="text-black font-medium hover:underline"
+                          onClick={() => setShowLogin(false)}>
                         Register Here
                     </Link>
                 </p>

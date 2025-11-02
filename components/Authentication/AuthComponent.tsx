@@ -3,7 +3,7 @@ import NavBar from "@/components/Common/NavBar";
 import Login from "@/components/Authentication/Login";
 import Register from "@/components/Authentication/Register";
 
-function AuthCommponent() {
+function AuthComponent() {
     const [showLogin, setShowLogin] = useState(true);
     return (
         <div className="flex flex-col">
@@ -16,11 +16,9 @@ function AuthCommponent() {
                 {
                     showLogin ? <Login setShowLogin={setShowLogin}/> : <Register setShowLogin={setShowLogin}/>
                 }
-
-
             </div>
         </div>
     );
 }
 
-export default AuthCommponent;
+export default AuthComponent;

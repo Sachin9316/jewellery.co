@@ -5,7 +5,7 @@ import NavBar from "@/components/Common/NavBar";
 function HeroSection() {
 
     return (
-        <section className="relative w-full flex-1 min-h-screen">
+        <section className="relative w-full flex-1">
             <Image src="/images/hero-image.jpg" alt="Hero" fill priority className="object-cover"/>
 
             <NavBar/>

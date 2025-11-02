@@ -48,7 +48,7 @@ function NavBar({invert=false}: {invert?: boolean}) {
                 </div>
 
                 <div className="relative w-24 h-10 md:w-32 md:h-12">
-                    <Image src="/icons/logo.svg" alt="logo" fill priority className="object-contain"/>
+                    <Image src="/icons/logo.svg" alt="logo" fill priority className="object-contain" fetchPriority={'high'}/>
                 </div>
 
                 <div className="flex gap-3">
@@ -60,7 +60,7 @@ function NavBar({invert=false}: {invert?: boolean}) {
                             }`}
                             onClick={() => index === 0 && toggleSearch()}
                         >
-                            <Image src={icon} alt={`icon-${id}`} fill priority className="object-contain"/>
+                            <Image src={icon} alt={`icon-${id}`} fill priority fetchPriority={'high'} className="object-contain"/>
                         </div>
                     ))}
                 </div>

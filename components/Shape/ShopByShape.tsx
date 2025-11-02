@@ -58,7 +58,7 @@ function ShopByShape() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center w-full">
+        <div className="flex flex-col items-center justify-center w-full mt-5">
             <CommonTitleHeader
                 title={"shop by shape"}
                 description={"Every Diamond Tells a Story So Find Yours"}

@@ -13,7 +13,7 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-    isAuthenticated: true,
+    isAuthenticated: false,
     user: null,
     token: null,
 };
@@ -24,12 +24,14 @@ const authSlice = createSlice({
     reducers: {
         loginSuccess: (
             state,
-            action: PayloadAction<{ user: User; token: string }>
+            action: PayloadAction<{ user: User; token: string, checked: boolean }>
         ) => {
-            state.isAuthenticated = true;
             state.user = action.payload.user;
             state.token = action.payload.token;
-            // persist in localStorage
+            const checked = action.payload.checked;
+            if (checked) {
+                state.isAuthenticated = true;
+            }
             localStorage.setItem("token", action.payload.token);
             localStorage.setItem("user", JSON.stringify(action.payload.user));
         },
@@ -43,7 +45,10 @@ const authSlice = createSlice({
         loadUserFromStorage: (state) => {
             const token = localStorage.getItem("token");
             const user = localStorage.getItem("user");
-            if (token && user) {
+            const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
+            const isLoggedIn: boolean = storedIsLoggedIn ? JSON.parse(storedIsLoggedIn) : false;
+
+            if (token && user && isLoggedIn) {
                 state.isAuthenticated = true;
                 state.token = token;
                 state.user = JSON.parse(user);

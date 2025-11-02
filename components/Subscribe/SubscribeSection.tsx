@@ -33,6 +33,7 @@ function SubscribeSection() {
                                 alt="Send"
                                 width={24}
                                 height={24}
+                                fetchPriority={'high'}
                             />
                         </button>
                     </div>

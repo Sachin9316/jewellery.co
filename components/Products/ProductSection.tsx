@@ -25,7 +25,7 @@ function ProductSection() {
     const [selected, setSelected] = useState(0);
 
     return (
-        <div className="flex flex-col items-center justify-center z-50">
+        <div className="flex flex-col items-center justify-center z-50 mt-10">
             <div className="flex flex-wrap gap-10">
                 {arr.map((item, index) => {
                     const isActive = selected === index;

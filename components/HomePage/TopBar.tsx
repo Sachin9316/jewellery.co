@@ -41,10 +41,13 @@ function TopBar() {
                 const result = await response.json();
 
                 if (!result.error) {
-                    const uniqueCurrencies = [
-                        ...new Set(result.data.map((item: any) => item.currency).filter(Boolean)),
-                    ];
-                    setCurrencies(uniqueCurrencies.sort());
+                    const currenciesData: string[] = result.data
+                        .map((item: { currency: string }) => item.currency)
+                        .filter((currency: string): currency is string => Boolean(currency));
+
+                    const uniqueCurrencies = Array.from(new Set(currenciesData)).sort();
+
+                    setCurrencies(uniqueCurrencies);
                 }
             } catch (error) {
                 console.error("Error loading currencies:", error);

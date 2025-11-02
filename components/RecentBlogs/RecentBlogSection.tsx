@@ -44,7 +44,7 @@ const process = [
 
 function RecentBlogSection() {
     return (
-        <div className="w-full flex flex-col items-center">
+        <div className="w-full flex flex-col items-center mt-10">
             <CommonTitleHeader title="recent blogs" description=""/>
 
             {/* Blog Cards */}

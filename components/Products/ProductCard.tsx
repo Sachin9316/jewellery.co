@@ -32,7 +32,7 @@ function ProductCard({label, price, icon, id}: ProductProps) {
     return (
         <div className="h-70 min-w-[170px] sm:h-70 sm:w-50 md:w-76 md:h-100 cursor-pointer transition-all duration-700"
              onMouseEnter={handleMouseHoverIn} onMouseLeave={handleMouseHoverOut}>
-            <div className="relative w-full h-full border-2">
+            <div className="relative w-full h-full ">
                 <div
                     onClick={handleWishListClick}
                     className="absolute top-3 right-4 pt-0.5 w-[30px] h-[30px] bg-muted rounded-full flex items-center justify-center z-10">

@@ -17,14 +17,13 @@ function ProductCard({label, price, icon, id, convertedPrice, currency}: CardPro
     const itemId = products?.find((product) => product.id === id);
 
     const handleWishListClick = () => {
-        dispatch(addToWishList({id, label, price, icon}));
+        dispatch(addToWishList({id, label, price: convertedPrice, icon}));
     };
 
     return (
-        <div
-            className="h-70 min-w-[170px] cursor-pointer transition-all duration-700"
-            onMouseEnter={() => setShow(true)}
-            onMouseLeave={() => setShow(false)}
+        <div className="h-70 min-w-[170px] sm:h-70 sm:w-50 md:w-76 md:h-100 cursor-pointer transition-all duration-700"
+             onMouseEnter={() => setShow(true)}
+             onMouseLeave={() => setShow(false)}
         >
             <div className="relative w-full h-full">
                 <div

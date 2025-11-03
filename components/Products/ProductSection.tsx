@@ -38,7 +38,9 @@ function ProductSection() {
 
         setCurrency(finalCurrency);
 
-        if (finalCurrency !== "INR") {
+        if (finalCurrency === "INR") {
+            setConversionRate(1);
+        } else {
             getConversionRate("INR", finalCurrency)
                 .then((rate) => setConversionRate(rate))
                 .catch(() => setConversionRate(1));

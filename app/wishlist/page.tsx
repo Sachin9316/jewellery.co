@@ -10,7 +10,6 @@ import {getConversionRate} from "@/utils/currency";
 
 function Page() {
     const {products} = useAppSelector((state: RootState) => state.product);
-
     const searchParams = useSearchParams();
     const [currency, setCurrency] = useState<string>("INR");
     const [conversionRate, setConversionRate] = useState<number>(1);
@@ -24,7 +23,9 @@ function Page() {
 
         setCurrency(finalCurrency);
 
-        if (finalCurrency !== "INR") {
+        if (finalCurrency === "INR") {
+            setConversionRate(1);
+        } else {
             getConversionRate("INR", finalCurrency)
                 .then((rate) => setConversionRate(rate))
                 .catch(() => setConversionRate(1));
@@ -40,16 +41,23 @@ function Page() {
                 />
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-2 gap-5 m-8 mx-auto p-4">
-                {products?.map((product, index) => (
-                    <ProductCard
-                        key={index}
-                        {...product}
-                        currency={currency}
-                        convertedPrice={product.price * conversionRate}
-                    />
-                ))}
-            </div>
+            {products && products.length > 0 ? (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-2 gap-5 m-8 mx-auto p-4">
+                    {products.map((product, index) => (
+                        <ProductCard
+                            key={index}
+                            {...product}
+                            currency={currency}
+                            convertedPrice={product.price * conversionRate}
+                        />
+                    ))}
+                </div>
+            ) : (
+                <div className="flex justify-center items-center h-[50vh] text-gray-500 text-lg">
+                    No products available
+                </div>
+            )}
+
         </div>
     );
 }

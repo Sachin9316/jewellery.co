@@ -38,13 +38,12 @@ function ProductSection() {
 
         setCurrency(finalCurrency);
 
-        if (finalCurrency === "INR") {
-            setConversionRate(1);
-        } else {
+        if (finalCurrency !== "INR") {
+            // setConversionRate(1);
             getConversionRate("INR", finalCurrency)
                 .then((rate) => setConversionRate(rate))
                 .catch(() => setConversionRate(1));
-        }
+            }
     }, [searchParams]);
 
     return (

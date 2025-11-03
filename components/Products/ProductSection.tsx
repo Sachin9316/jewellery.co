@@ -74,7 +74,7 @@ function ProductSection() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-2 gap-5 m-10 mx-auto">
                 {products.map((product) => (
                     <ProductCard
-                        key={product.id}
+                        qty={0} key={product.id}
                         {...product}
                         convertedPrice={product.price * conversionRate}
                         currency={currency}

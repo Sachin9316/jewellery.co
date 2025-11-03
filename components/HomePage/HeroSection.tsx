@@ -10,7 +10,7 @@ function HeroSection() {
 
             <NavBar/>
 
-            <div className="absolute bottom-3 p-2 space-y-14 sm:left-20 left-10 md:w-2/7">
+            <div className="absolute bottom-3 p-2 space-y-14 sm:left-20 left-10 md:w-2/4 lg:w-2/7">
                 <div className="space-y-10">
                     <div className="sm:text-[50px] text-3xl font-light tracking-widest">GIFT THE GLOW</div>
                     <div className="sm:text-[24px] text-md uppercase leading-7 tracking-widest">

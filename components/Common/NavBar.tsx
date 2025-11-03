@@ -27,6 +27,7 @@ function NavBar({invert = false}: { invert?: boolean }) {
     const dispatch = useAppDispatch();
     const count: number = products?.length;
     const router = useRouter();
+    const cartQty: number = useAppSelector((state: RootState) => state?.product?.cart?.length);
 
     const handleLogout = () => {
         dispatch(logout());
@@ -50,8 +51,13 @@ function NavBar({invert = false}: { invert?: boolean }) {
     }
 
     const handleWishlistClick = () => {
-        console.log('hello')
+        console.log('wishlist')
         router.push('/wishlist');
+    }
+
+    const handleMyCart = () => {
+        console.log('cart')
+        router.push('/cart');
     }
 
     const handleClick = (index: number) => {
@@ -60,7 +66,9 @@ function NavBar({invert = false}: { invert?: boolean }) {
         } else if (index === 1) {
             handleWishlistClick()
         } else if (index === 2) {
-            handleLogout()
+            handleLogout();
+        } else if (index === 3) {
+            handleMyCart();
         }
     }
 
@@ -115,6 +123,21 @@ function NavBar({invert = false}: { invert?: boolean }) {
                                         "
                                         >
                                         {count}
+                                    </span>
+                                    )}
+
+                                    {id === 4 && cartQty > 0 && (
+                                        <span
+                                            className="
+                                            absolute -top-1 -right-1
+                                            w-4 h-4
+                                            bg-red-600 text-white
+                                            text-[10px]
+                                            flex items-center justify-center
+                                            rounded-full
+                                        "
+                                        >
+                                        {cartQty}
                                     </span>
                                     )}
                                 </div>

@@ -45,6 +45,7 @@ const authSlice = createSlice({
             localStorage.removeItem("user");
             localStorage.removeItem("isLoggedIn");
             localStorage.removeItem("products");
+            localStorage.removeItem("cart");
         },
         loadUserFromStorage: (state) => {
             const token = localStorage.getItem("token");

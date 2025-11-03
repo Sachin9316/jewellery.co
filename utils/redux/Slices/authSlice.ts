@@ -32,7 +32,7 @@ const authSlice = createSlice({
             state.token = action.payload.token;
             const checked = action.payload.checked;
             if (checked) {
-                state.isAuthenticated = true;
+                state.showLoggedIn = true;
             }
             localStorage.setItem("token", action.payload.token);
             localStorage.setItem("user", JSON.stringify(action.payload.user));

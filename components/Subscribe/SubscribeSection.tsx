@@ -1,11 +1,12 @@
 "use client";
-import React from "react";
+import React, {useState} from "react";
 import Image from "next/image";
 import {useSelector} from "react-redux";
 import {RootState} from "@/utils/redux/store";
 import {Formik, Form, Field, ErrorMessage} from "formik";
 import * as Yup from "yup";
 import {toast} from "sonner";
+import {Loader} from "lucide-react";
 
 
 const validationSchema = Yup.object({
@@ -16,11 +17,13 @@ const validationSchema = Yup.object({
 
 function SubscribeSection() {
     const {isAuthenticated} = useSelector((state: RootState) => state.auth);
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (values: { email: string }, {resetForm}: any) => {
+        setLoading(true)
         try {
             const res = await fetch(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/send-email`,
+                `$/api/send-email`,
                 {
                     method: "POST",
                     headers: {"Content-Type": "application/json"},
@@ -41,6 +44,8 @@ function SubscribeSection() {
             }
         } catch (error) {
             toast.error("Something went wrong! Try again.", {position: "top-right"});
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -78,16 +83,25 @@ function SubscribeSection() {
 
                                     <button
                                         type="submit"
+                                        disabled={loading}
                                         className={`${
                                             isAuthenticated ? "bg-destructive" : "bg-primary"
                                         } px-10 bottom-0 h-14 w-14 absolute right-0 rounded-md flex items-center justify-center hover:bg-red-700 transition-all`}
                                     >
-                                        <Image
-                                            src="/icons/send.svg"
-                                            alt="Send"
-                                            fill
-                                            className="p-4"
-                                        />
+                                        {
+                                            loading ? (
+                                                <div className={'animate-spin'}>
+                                                    <Loader color={'white'}/>
+                                                </div>
+                                            ) : (
+                                                <Image
+                                                    src="/icons/send.svg"
+                                                    alt="Send"
+                                                    fill
+                                                    className="p-4"
+                                                />
+                                            )
+                                        }
                                     </button>
 
                                 </div>

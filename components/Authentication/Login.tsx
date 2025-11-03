@@ -141,7 +141,7 @@ const [showPassword, setShowPassword] = useState(false);
                 {/* Register Link */}
                 <p className="text-sm mt-6 text-gray-600">
                     Don’t have an account?{" "}
-                    <Link href="#" className="text-black font-medium hover:underline"
+                    <Link href="#" className="text-black font-medium underline"
                           onClick={() => setShowLogin(false)}>
                         Register Here
                     </Link>

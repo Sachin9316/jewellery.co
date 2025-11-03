@@ -1,3 +1,5 @@
+// /app/api/send-email/route.ts (Next.js 13+ App Router)
+
 import {NextResponse} from "next/server";
 import {MailerSend, EmailParams, Sender, Recipient} from "mailersend";
 
@@ -9,10 +11,7 @@ export async function POST(req: Request) {
             apiKey: process.env.MAILERSEND_API_KEY!,
         });
 
-        const sentFrom = new Sender(
-            "no-reply@test-xkjn41mn3964z781.mlsender.net",
-            "Sachin"
-        );
+        const sentFrom = new Sender("dev.sachinu@gmail.com", "Sachin");
         const recipients = [new Recipient(to)];
 
         const emailParams = new EmailParams()

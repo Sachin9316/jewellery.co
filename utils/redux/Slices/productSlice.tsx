@@ -25,6 +25,7 @@ const productSlice = createSlice({
 
             if (exists) {
                 state.products = state.products.filter((product) => product.id !== id);
+                localStorage.setItem("products", JSON.stringify(state.products));
             } else {
                 state.products.push(action.payload);
                 localStorage.setItem("products", JSON.stringify(state.products));

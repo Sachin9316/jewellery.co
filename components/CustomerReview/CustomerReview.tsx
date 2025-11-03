@@ -4,9 +4,9 @@ import Image from "next/image";
 import CommonTitleHeader from "@/components/Common/CommonTitleHeader";
 
 const videos = [
-    "/images/video-1.mp4",
-    "/images/video-2.mp4",
-    "/images/video-3.mp4",
+    "/images/video1.mp4",
+    "/images/video2.mp4",
+    "/images/video3.mp4",
     "/images/video_of_lab.mp4",
 ];
 

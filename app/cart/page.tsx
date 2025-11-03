@@ -73,13 +73,13 @@ function Page() {
             )}
 
             {cart && cart.length > 0 && (
-                <div className="fixed bottom-0 left-0 w-full bg-white shadow-lg p-4 flex justify-center">
+                <div className="fixed bottom-0 left-0 w-full bg-white shadow-lg p-4 flex justify-center z-99">
                     <button
                         onClick={handleCheckout}
-                        className="flex items-center gap-2 bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition-all"
+                        className="flex h-full w-full justify-center md:w-1/4 items-center gap-2 cursor-pointer bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition-all"
                     >
                         <ShoppingCart size={20}/>
-                        Order
+                        Check Out
                     </button>
                 </div>
             )}

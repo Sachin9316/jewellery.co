@@ -17,7 +17,7 @@ function ProductCard({label, price, icon, id, convertedPrice, currency}: CardPro
     const itemId = products?.find((product) => product.id === id);
 
     const handleWishListClick = () => {
-        dispatch(addToWishList({id, label, price: convertedPrice, icon}));
+        dispatch(addToWishList({id, label, price, icon}));
     };
 
     return (

@@ -1,5 +1,3 @@
-// /app/api/send-email/route.ts (Next.js 13+ App Router)
-
 import {NextResponse} from "next/server";
 import {MailerSend, EmailParams, Sender, Recipient} from "mailersend";
 

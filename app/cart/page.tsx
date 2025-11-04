@@ -3,13 +3,13 @@
 import React, {useEffect, useState} from "react";
 import CommonTitleHeader from "@/components/Common/CommonTitleHeader";
 import ProductCard from "@/components/Products/ProductCard";
-import {useAppDispatch, useAppSelector} from "@/utils/redux/hooks";
-import {RootState} from "@/utils/redux/store";
+import {useAppDispatch, useAppSelector} from "@/redux/hooks";
+import {RootState} from "@/redux/store";
 import {useSearchParams, useRouter} from "next/navigation";
 import {getConversionRate} from "@/utils/currency";
 import {ShoppingCart} from "lucide-react";
 import CheckOutSplashScreen from "@/components/Common/CheckOutSplashScreen";
-import { clearCart } from "@/utils/redux/Slices/productSlice";
+import { clearCart } from "@/redux/Slices/productSlice";
 
 function Page() {
     const {cart} = useAppSelector((state: RootState) => state.product);

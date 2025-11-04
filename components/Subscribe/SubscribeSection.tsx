@@ -2,7 +2,7 @@
 import React, {useState} from "react";
 import Image from "next/image";
 import {useSelector} from "react-redux";
-import {RootState} from "@/utils/redux/store";
+import {RootState} from "@/redux/store";
 import {Formik, Form, Field, ErrorMessage} from "formik";
 import * as Yup from "yup";
 import {toast} from "sonner";

@@ -3,8 +3,8 @@
 import React, {useEffect, useState} from "react";
 import CommonTitleHeader from "@/components/Common/CommonTitleHeader";
 import ProductCard from "@/components/Products/ProductCard";
-import {useAppSelector} from "@/utils/redux/hooks";
-import {RootState} from "@/utils/redux/store";
+import {useAppSelector} from "@/redux/hooks";
+import {RootState} from "@/redux/store";
 import {useSearchParams} from "next/navigation";
 import {getConversionRate} from "@/utils/currency";
 

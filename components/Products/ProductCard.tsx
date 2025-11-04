@@ -1,9 +1,9 @@
 import React, {useCallback, useState} from 'react';
 import Image from "next/image";
 import {ProductProps} from "@/components/Products/ProductSection";
-import {useAppDispatch, useAppSelector} from "@/utils/redux/hooks";
-import {addToWishList, handleAddToCart, handleRemoveFromCart} from "@/utils/redux/Slices/productSlice";
-import {RootState} from "@/utils/redux/store";
+import {useAppDispatch, useAppSelector} from "@/redux/hooks";
+import {addToWishList, handleAddToCart, handleRemoveFromCart} from "@/redux/Slices/productSlice";
+import {RootState} from "@/redux/store";
 import {Minus, Plus} from "lucide-react";
 
 interface CardProps extends ProductProps {

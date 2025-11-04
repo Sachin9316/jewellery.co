@@ -1,7 +1,7 @@
 "use client";
 
-import {useAppSelector} from "@/utils/redux/hooks";
-import {RootState} from "@/utils/redux/store";
+import {useAppSelector} from "@/redux/hooks";
+import {RootState} from "@/redux/store";
 import HeroSection from "@/components/HomePage/HeroSection";
 import TopBar from "@/components/HomePage/TopBar";
 import ShopByCategory from "@/components/Catgeory/ShopByCategory";

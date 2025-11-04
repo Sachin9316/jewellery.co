@@ -4,9 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import {DropdownMenu, DropdownMenuTrigger} from '@radix-ui/react-dropdown-menu';
 import {DropdownMenuContent, DropdownMenuItem} from "@/components/ui/dropdown-menu";
-import {useAppDispatch, useAppSelector} from "@/utils/redux/hooks";
-import {RootState} from "@/utils/redux/store";
-import {loggInToggle, logout} from "@/utils/redux/Slices/authSlice";
+import {useAppDispatch, useAppSelector} from "@/redux/hooks";
+import {RootState} from "@/redux/store";
+import {loggInToggle, logout} from "@/redux/Slices/authSlice";
 import SearchAutocomplete from "@/components/Common/SearchAutocomplete";
 import {useRouter} from "next/navigation";
 

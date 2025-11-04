@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useSelector} from "react-redux";
-import {RootState} from "@/utils/redux/store";
+import {RootState} from "@/redux/store";
 import {ChevronDown, ChevronUp} from "lucide-react";
 
 const FooterColumn = ({title, links}: { title: string; links: string[] }) => {
@@ -24,9 +24,7 @@ const FooterColumn = ({title, links}: { title: string; links: string[] }) => {
             </div>
 
             <ul
-                className={`overflow-hidden transition-all duration-300 ${
-                    isOpen ? "max-h-full" : "max-h-0 md:max-h-full"
-                } flex flex-col gap-3 text-sm md:max-h-full pb-1`}
+                className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-full" : "max-h-0 md:max-h-full"} flex flex-col gap-3 text-sm md:max-h-full pb-1`}
             >
                 {links.map((link, index) => (
                     <li key={index} className="cursor-pointer hover:underline tracking-widest text-muted-foreground">

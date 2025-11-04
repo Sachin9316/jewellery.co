@@ -4,7 +4,7 @@ import React, {useState} from "react";
 import Image from "next/image";
 import {ChevronDown, ChevronUp} from "lucide-react";
 import {useSelector} from "react-redux";
-import {RootState} from "@/utils/redux/store";
+import {RootState} from "@/redux/store";
 import FooterColumn from "./FooterColumn";
 
 const companyLinks = ["About us", "Why we are different", "Lab grown diamonds", "Why us", "Our purpose", "Story Glimpse"];

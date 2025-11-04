@@ -5,7 +5,7 @@ import Link from "next/link";
 import {Formik, Form, Field, ErrorMessage} from "formik";
 import * as Yup from "yup";
 import {useDispatch} from "react-redux";
-import {loginSuccess} from "@/utils/redux/Slices/authSlice";
+import {loginSuccess} from "@/redux/Slices/authSlice";
 import {toast} from "sonner";
 
 export default function Login({setShowLogin}: { setShowLogin: any }) {

@@ -3,8 +3,8 @@
 import {useEffect, useRef} from 'react';
 import {Provider} from 'react-redux';
 import {makeStore, AppStore} from './store';
-import {loadUserFromStorage} from '@/utils/redux/Slices/authSlice';
-import {loadProducts} from "@/utils/redux/Slices/productSlice";
+import {loadUserFromStorage} from "@/redux/Slices/authSlice";
+import {loadProducts} from "@/redux/Slices/productSlice";
 
 export default function Providers({children}: { children: React.ReactNode }) {
     const storeRef = useRef<AppStore | null>(null);

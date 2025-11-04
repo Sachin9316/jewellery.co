@@ -1,7 +1,7 @@
 import type {Metadata} from "next";
 import {Geist, Geist_Mono} from "next/font/google";
 import "./globals.css";
-import Providers from "@/utils/redux/provider";
+import Providers from "@/redux/provider";
 import ProtectedRoute from "@/components/Authentication/ProtectedRoute";
 import {Toaster} from "sonner";
 

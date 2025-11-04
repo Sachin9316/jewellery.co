@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {Formik, Form, Field, ErrorMessage} from "formik";
 import * as Yup from "yup";
-import {loginSuccess} from "@/utils/redux/Slices/authSlice";
+import {loginSuccess} from "@/redux/Slices/authSlice";
 import {useDispatch} from "react-redux";
 
 export default function Register({setShowLogin}: {setShowLogin: any}) {

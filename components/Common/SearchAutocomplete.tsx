@@ -36,6 +36,9 @@ export default function SearchAutocomplete() {
             try {
                 const res = await fetch(`https://dummyjson.com/products/search?q=${query}`);
                 const data = await res.json();
+                console.log({
+                    data
+                })
                 setResults(data.products?.slice(0, 4) || []);
             } catch (error) {
                 console.error(error);

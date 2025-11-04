@@ -20,34 +20,27 @@ function SubscribeSection() {
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (values: { email: string }, {resetForm}: any) => {
-        setLoading(true)
+        setLoading(true);
         try {
-            const res = await fetch(
-                `/api/send-email`,
-                {
-                    method: "POST",
-                    headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify({
-                        to: values.email,
-                        subject: "Newsletter Subscription",
-                        message: `<p>New subscriber: ${values.email}</p>`,
-                    }),
-                }
-            );
+            await fetch(`https://reqres.in/api/users`, {
+                method: "POST",
+                headers: {"x-api-key": "reqres-free-v1"},
+                body: JSON.stringify({
+                    to: values.email,
+                    subject: "Newsletter Subscription",
+                    message: `<p>New subscriber: ${values.email}</p>`,
+                }),
+            });
 
-            const data = await res.json();
-            if (data.success) {
-                toast.success("Email sent successfully!", {position: "top-right"});
-                resetForm();
-            } else {
-                toast.error("Failed to send email", {position: "top-right"});
-            }
+            toast.success("You have successfully subscribed!", {position: "top-right"});
+            resetForm();
         } catch (error) {
             toast.error("Something went wrong! Try again.", {position: "top-right"});
         } finally {
             setLoading(false);
         }
     };
+
 
     return (
         <div className="flex flex-col items-center justify-center w-full px-4 bg-chart-1 py-10 md:my-10">
@@ -86,7 +79,7 @@ function SubscribeSection() {
                                         disabled={loading}
                                         className={`${
                                             isAuthenticated ? "bg-destructive" : "bg-primary"
-                                        } px-10 bottom-0 h-14 w-14 absolute right-0 rounded-md flex items-center justify-center hover:bg-red-700 transition-all`}
+                                        } px-10 cursor-pointer bottom-0 h-14 w-14 absolute right-0 rounded-md flex items-center justify-center hover:bg-red-700 transition-all`}
                                     >
                                         {
                                             loading ? (

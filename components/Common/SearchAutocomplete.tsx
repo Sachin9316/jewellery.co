@@ -1,5 +1,5 @@
 "use client";
-import React, {useState, useEffect, useRef} from "react";
+import React, {useState, useEffect} from "react";
 import {X} from "lucide-react";
 
 interface Product {
@@ -11,19 +11,6 @@ export default function SearchAutocomplete() {
     const [query, setQuery] = useState("");
     const [results, setResults] = useState<Product[]>([]);
     const [loading, setLoading] = useState(false);
-
-    const containerRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        function handleClickOutside(event: MouseEvent) {
-            if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-                setResults([]);
-            }
-        }
-
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
 
     useEffect(() => {
         if (query.length < 2) {
@@ -50,7 +37,7 @@ export default function SearchAutocomplete() {
     }, [query]);
 
     return (
-        <div ref={containerRef} className="relative w-full">
+        <div className="relative w-full">
             <input
                 type="text"
                 placeholder="Search for jewellery..."

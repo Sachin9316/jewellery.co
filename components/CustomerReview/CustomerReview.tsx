@@ -54,7 +54,6 @@ function CustomerReview() {
                     ))}
                 </div>
 
-                {/* Right Arrow */}
                 <button onClick={nextSlide} className="w-10 h-10 flex items-center justify-center cursor-pointer z-30">
                     <Image src="/icons/right-arrow-gray.svg" alt="right" width={20} height={20}/>
                 </button>

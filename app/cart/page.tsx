@@ -56,7 +56,7 @@ function Page() {
             </div>
 
             {cart && cart.length > 0 ? (
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-2 gap-5 m-8 mx-auto p-4">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-2 gap-5 m-8 mx-auto p-4 mb-20">
                     {cart.map((product, index) => (
                         <ProductCard
                             key={index}
